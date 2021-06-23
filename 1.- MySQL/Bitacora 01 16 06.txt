@@ -1,0 +1,4 @@
+Bitacora 01 16 06
+
+1. Investigue sobre bases de datos y tablas. Cómo agregar datos a bases de datos.
+
