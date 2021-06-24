@@ -1,0 +1,7 @@
+Bitacora 03 18 06
+1. Investigue sobre BASE DE DATOS DE UNA BIBLIOTECA 
+2. Investigue sobre librerias
+3. Investigue sobre MySQL Workbench
+4. Investigue sobre el error code 1292 incorrect date value mysql
+5. Investigue sobre unciones y formatos de SQL Convert Date
+6. Investigue sobre ¿Cómo insertar varios registros en un solo INSERT en SQL?

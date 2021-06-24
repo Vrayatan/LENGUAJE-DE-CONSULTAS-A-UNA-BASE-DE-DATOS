@@ -1,0 +1,4 @@
+Bitacora 23 06
+/* 19 / 06 */
+
+1. Averigue sobre los comandos de seleccion de tablas en MySQL

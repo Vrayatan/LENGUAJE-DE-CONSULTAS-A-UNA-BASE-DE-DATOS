@@ -1,0 +1,110 @@
+/*De aqui 18/06 
+Ejercicio: Consultas*/
+create database empleadoLibro character set utf8;
+use empleadoLibro;
+create table Libro (
+idLibro int auto_increment,
+    nombreLibro varchar(30),
+    autor varchar(20),
+    editorial varchar(20),
+    nroEdición bigint,
+    añoPublicacion int,
+    categoria varchar(20),
+    ejemplares int,
+    primary key(idLibro)
+);
+
+alter table Libro modify nroEdición double;
+alter table Libro modify añoPublicacion int;
+alter table Libro modify nombreLibro varchar(50);
+
+insert into Libro (nombreLibro, autor, editorial, nroEdición, añoPublicacion, categoria, ejemplares)
+values ('La casa de los Espiritus', 'Isabel Allende', 'De Bolsillo', 9871138903, 2004, 'ficcion', 355);
+
+/* aqui agregar los multiples values*/
+insert into Libro (nombreLibro, autor, editorial, nroEdición, añoPublicacion, categoria, ejemplares)
+values 
+('Don Quijote de la Mancha: Parte 1', 'Miguel de Cervantes', 'De Bolsillo', 51719912750, 2004, 'ficcion', 400),
+('Don Quijote de la Mancha: Parte 2', 'Miguel de Cervantes', 'De Bolsillo', 51719912751, 2004, 'ficcion', 370)
+;
+
+insert into Libro (nombreLibro, autor, editorial, nroEdición, añoPublicacion, categoria, ejemplares)
+values 
+('Don Quijote de la Mancha: Parte 3', 'Miguel de Cervantes', 'De Bolsillo', 51719912752, 2004, 'ficcion', 600),
+('Don Quijote de la Mancha: Parte 4', 'Miguel de Cervantes', 'De Bolsillo', 51719912753, 2004, 'ficcion', 500),
+('Historias de Nueva Orleans', 'William Faulkner', 'Alfaguara', 1325998, 1985, 'novela', 186),
+('El principito', 'Antoine SaintExupery', 'Andina', 1331136, 1996, 'aventura', 750),
+('El príncipe', 'Maquiavelo', 'S.M.', 1125, 1995, 'político', 210),
+('Diplomacia', 'Henry Kissinger', 'S.M.', 97987987, 1997, 'político', 825),
+('Los Windsor', 'Kitty Kelley', '', 64646498, 1998, 'biografía', 620),
+('El Último Emperador', 'Pu-Yi', 'Caralt', 6464982, 1989, 'autobiografias', 353),
+('Fortunata y Jacinta', 'Perez Galdós', 'Plaza & Janés', 3131629, 1984, 'novela', 625),
+('Su último día', 'Shari Lapena', 'SUMA DE LETRAS', 9788491295204, 2021, 'Thriller', 400),
+('Después', 'Stephen King', 'Plaza & Janés', 9789566129004, 2021, 'Terror', 350),
+('Judy Moody y la fiesta de té real', '
+Megan McDonald', 'Alfaguara', 9789569636783, 2021, 'infantil', 100),
+('Kamala Harris', 'Dan Morain
+', 'Roca Editorial', 9788418557262, 2021, 'biografía', 288)
+;
+
+
+
+
+
+create table Empleado (
+idEmpleado int auto_increment,
+    nombre varchar(30),
+    apellidoP varchar(20),
+    apellidoM varchar(20),
+    edad int,
+    departamento varchar(20),
+    cargo varchar(20),
+    sueldo long,
+    fechaIngreso date,
+    primary key(idEmpleado)
+);
+insert into Empleado (nombre, apellidoP, apellidoM, edad, departamento, cargo, sueldo, fechaIngreso)
+values ('Morgan', 'Freeman', 'Pitt', 54, 'Ventas', 'Planta', 500000, "2021-10-03");
+
+insert into Empleado (nombre, apellidoP, apellidoM, edad, departamento, cargo, sueldo, fechaIngreso)
+values ('Kamala', 'Harris', 'Morgan', 50, 'RRHH', 'Secretaria', 600000, "2021-10-05"),
+ ('Monica', 'Palacios', 'Julianez', 30, 'Ventas', 'Gerente', 2000000, "2020-12-03"),
+ ('Pamela', 'Orellana', 'Frane', 45, 'Ventas', 'Planta', 500000, "2021-10-03"),
+ ('Holanda', 'Ortego', 'Peumo', 18, 'Ventas', 'Secretario', 600000, "2017-03-07"),
+ ('Jimena', 'Rubio', 'Roble', 33, 'Logistica', 'Gerente', 2000000, "2021-10-05"),
+ ('Oscar', 'Valenzuela', 'Arboleda', 34, 'Logistica', 'Planta', 500000, "2018-11-11"),
+ ('Ignacio', 'Horten', 'Pecesio', 38, 'Logistica', 'Planta', 500000, "2018-11-11"),
+ ('Pablo', 'Mork', 'Rilencio', 52, 'Finanzas', 'Gerente', 2000000, "2021-10-05"),
+ ('Jesus', 'Blasmee', 'Rowen', 44, 'Finanzas', 'Planta', 500000, "2020-12-03"),
+ ('María', 'Flores', 'Pika', 45, 'Finanzas', 'Secretario', 600000, "2017-03-07"),
+ ('Jose', 'Valentinez', 'Lima', 46, 'Despacho', 'Gerente', 2000000, "2021-10-03"),
+ ('Patricio', 'Marcianez', 'Peru', 21, 'Despacho', 'Planta', 500000, "2018-11-11"),
+ ('Valorant', 'Manriquez', 'Venez', 22, 'Despacho', 'Secretario', 600000, "2020-12-03");
+
+create table tablaPokemon(
+idPokemon int auto_increment,
+nombrePokemon varchar(20),
+rutaAparece int,
+primary key(idPokemon)
+);
+
+insert into tablaPokemon (nombrePokemon, rutaAparece)
+values ('Bulbasaur', 1),
+('Tyranosaur', 11),
+('Charizard', 43),
+('Charmander', 86),
+('Pikachu', 88),
+('Milktank', 203),
+('Caterpie', 43),
+('Fearrow', 44),
+('Pichu', 18),
+('Muk', 14),
+('Mudkip', 15),
+('Torchic', 12),
+('Gible', 20),
+('Butterfre', 130),
+('Weedle', 144),
+('Jynx', 133);
+
+ 
+/*/

@@ -1,0 +1,3 @@
+Bitacora 02 17 06
+1. Busqué información sobre MySQL workbench. 2. Busqué información sobre cómo agregar valores date. 
+3. Busqué información sobre cómo ponerle night mode la mysql.

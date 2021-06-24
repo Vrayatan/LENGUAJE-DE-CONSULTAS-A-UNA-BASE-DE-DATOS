@@ -1,0 +1,12 @@
+Actividades 19/06
+/* 19 / 06 */
+select idLibro, autor from libro;
+
+select * from libro where editorial="S.M.";
+select * from empleado where cargo= 'gerente' and departamento='ventas';
+select * from libro where editorial='S.M.' or editorial='De Bolsillo';
+
+select * from libro where idLibro in (1,4,5,10);
+
+
+

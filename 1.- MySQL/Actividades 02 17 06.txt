@@ -1,0 +1,58 @@
+Actividades 02 17 06
+
+//DBMS = sistema de gestion de bases de datos.
+
+65 02 // 17
+
+/* De aqui pa abajo 17 06*/
+alter table primeratabla add column nroHijos int; 
+alter table segundatabla add column fiebre boolean; 
+alter table terceratabla add column hpBase int; 
+
+alter table primeratabla modify nroHijos double;
+alter table segundatabla modify fiebre double;
+alter table terceratabla modify hpBase double;
+
+alter table primeratabla drop column nroHijos;
+alter table segundatabla drop column fiebre;
+alter table terceratabla drop column hpBase;
+
+drop table segundatabla;
+
+/* ejercicio*/
+
+create database ejercicio1 character set utf8;
+use ejercicio1;
+create table tabla1 (
+idTabla int auto_increment,
+    nombre varchar(30),
+    apellido varchar(20),
+    fechaNacimiento date,
+    primary key(idTabla)
+);
+create table tabla2 (
+idTabla int auto_increment,
+    nombre varchar(30),
+    apellido varchar(20),
+    fechaNacimiento date,
+    primary key(idTabla)
+);
+
+alter table tabla1 add column nroHijos int; 
+alter table tabla1 add column fiebre boolean; 
+
+alter table tabla2 add column nroHijos int; 
+alter table tabla2 add column fiebre boolean; 
+
+alter table tabla1 modify nroHijos double;
+alter table tabla1 drop column nroHijos;
+alter table tabla2 drop column nroHijos;
+
+/* mas materia: introducir campos*/
+
+insert into tabla1 (nombre, apellido)
+values ('Nicolas', 'Palacios');
+insert into tabla1 (fechaNacimiento)
+values ("1998-09-07");
+select * from tabla1;
+
