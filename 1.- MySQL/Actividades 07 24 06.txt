@@ -1,0 +1,24 @@
+Actividades 24 06
+
+
+/* 24/06 */
+select idLibro, categoria from libro group by categoria;
+select nombrePokemon from tablapokemon group by rutaAparece < 10;
+select nombre, apellidoP from empleado group by fechaIngreso < "2020-01-01";
+/*ejercicio*/
+select departamento, max(sueldo) from empleado group by departamento;
+select departamento, min(sueldo) from empleado group by departamento;
+select count(idEmpleado), departamento from empleado group by departamento;
+select sum(sueldo) from empleado;
+select editorial, sum(ejemplares) from libro group by editorial;
+select sum(ejemplares) from libro;
+
+/* Identificar entidades de una tienda de videojuegos:
+
+[Videojuego]
+[Cliente]
+[Bodega]
+[Empleado]
+[Sucursales]
+[Ventas]
+[Compras]*/

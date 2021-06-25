@@ -1,0 +1,24 @@
+Actividades 06 23 06 
+
+/* 23/06 */
+select * from libro where editorial not in ('S.M.',  'Alfaguara');
+select nombreLibro, editorial, ejemplares from libro where  ejemplares between 100 and 330;
+select nombre, apellidoP, cargo from empleado where sueldo between 550000 and 750000;
+select nombre, apellidoP, apellidoM, cargo, departamento, edad from empleado where departamento not in ('ventas');
+
+select * from empleado order by nombre desc;
+select * from empleado order by nombre asc;
+
+select * from empleado order by cargo asc;
+select nombre, apellidoP, cargo, departamento from empleado order by departamento asc;
+select nombre, cargo, sueldo from empleado order by sueldo asc;
+select autor, nombreLibro, editorial from libro order by editorial asc;
+select * from libro order by ejemplares asc;
+
+/**/
+select count(idLibro) as cantidad_libros from libro;
+select max(edad) from empleado;
+select min(edad) from empleado;
+select max(sueldo) from empleado where departamento='ventas';
+select sum(sueldo) from empleado;
+select avg (sueldo) from empleado;

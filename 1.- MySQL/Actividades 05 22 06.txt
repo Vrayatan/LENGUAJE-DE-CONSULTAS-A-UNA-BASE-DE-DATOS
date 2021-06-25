@@ -1,0 +1,17 @@
+Actividades 22 06
+/* 22 / 06*/ 
+select * from libro where ejemplares = 100;
+select * from empleado where sueldo > 500000;
+select *from libro where nroEdición < 3;
+select autor from libro where nroEdición<3;
+select nombre, apellidoP, departamento from empleado where departamento = 'ventas';
+
+select * from empleado where nombre not in ('Nicolas', 'Andrea');
+select * from empleado where cargo <> 'Gerente';
+select * from empleado where fechaIngreso between '2020-01-01' and '2021-12-12';
+select * from tablapokemon where rutaAparece between 1 and 20;
+select * from libro where nroEdición between 1 and 7;
+
+select * from empleado where nombre like '%a';
+select * from libro where ejemplares like '%0';
+

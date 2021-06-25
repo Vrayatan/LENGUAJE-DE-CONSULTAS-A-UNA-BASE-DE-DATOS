@@ -1,0 +1,3 @@
+Bitacora 06 23 06
+1. Investigue sobre SQL Order by Clause overview and examples
+2. Investigue sobre SQL ORDER BY Clause
