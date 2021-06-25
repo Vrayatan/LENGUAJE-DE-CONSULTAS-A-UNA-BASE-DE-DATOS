@@ -1,0 +1,4 @@
+Bitacora 24 06
+1. Investigué sobre diseño de bases de datos
+2. Investigue sobre los modelos de diseño de DB
+3. Investigue sobre entidad 
