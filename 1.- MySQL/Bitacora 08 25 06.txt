@@ -1,0 +1,3 @@
+Bitacora 25 06
+1. Investigue sobre diagramas de bases de datos
+2. investigue sobre rlaciones en bases de datos
