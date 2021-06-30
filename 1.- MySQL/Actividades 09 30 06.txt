@@ -1,0 +1,302 @@
+Actividades 30 06
+
+//Tabla AI = autoincrementable
+
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema SistemaEd
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema SistemaEd
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `SistemaEd` DEFAULT CHARACTER SET utf8 ;
+USE `SistemaEd` ;
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Categoria` (
+  `idCategoria` INT NOT NULL AUTO_INCREMENT,
+  `nombreCategoria` VARCHAR(45) NULL,
+  `descripción` VARCHAR(45) NULL,
+  PRIMARY KEY (`idCategoria`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Producto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Producto` (
+  `idProducto` INT NOT NULL AUTO_INCREMENT,
+  `nombreProducto` VARCHAR(45) NULL,
+  `precioProducto` INT NULL,
+  `idCategoria` INT NOT NULL,
+  PRIMARY KEY (`idProducto`),
+  INDEX `fk_Producto_Categoria_idx` (`idCategoria` ASC),
+  CONSTRAINT `fk_Producto_Categoria`
+    FOREIGN KEY (`idCategoria`)
+    REFERENCES `SistemaEd`.`Categoria` (`idCategoria`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Cliente` (
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
+  `nombreCliente` VARCHAR(45) NULL,
+  `apellidoCliente` VARCHAR(45) NULL,
+  PRIMARY KEY (`idCliente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Detalle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Detalle` (
+  `idDetalleVenta` INT NOT NULL AUTO_INCREMENT,
+  `idProducto` INT NULL,
+  `idCliente` INT NULL,
+  PRIMARY KEY (`idDetalleVenta`),
+  INDEX `fk_detalleVenta_Cliente_idx` (`idCliente` ASC),
+  INDEX `fk_detalleVenta_Producto_idx` (`idProducto` ASC),
+  CONSTRAINT `fk_detalleVenta_Cliente`
+    FOREIGN KEY (`idCliente`)
+    REFERENCES `SistemaEd`.`Cliente` (`idCliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_detalleVenta_Producto`
+    FOREIGN KEY (`idProducto`)
+    REFERENCES `SistemaEd`.`Producto` (`idProducto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Cliente1`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Cliente1` (
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
+  `accionRealizada` VARCHAR(45) NULL,
+  `saldo` DOUBLE NULL,
+  `nombreCliente` VARCHAR(45) NULL,
+  `apellidoCliente` VARCHAR(45) NULL,
+  PRIMARY KEY (`idCliente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Empleado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Empleado` (
+  `idEmpleado` INT NOT NULL AUTO_INCREMENT,
+  `idTienda` INT NULL,
+  `nombre` VARCHAR(45) NULL,
+  `apellidoP` VARCHAR(45) NULL,
+  `apellidoM` VARCHAR(45) NULL,
+  `fechaContrato` DATE NULL,
+  `departamento` VARCHAR(45) NULL,
+  PRIMARY KEY (`idEmpleado`),
+  INDEX `fk_Empleado_Tienda_idx` (`idTienda` ASC),
+  CONSTRAINT `fk_Empleado_Tienda`
+    FOREIGN KEY (`idTienda`)
+    REFERENCES `SistemaEd`.`Tienda` (`idTienda`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Tienda`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Tienda` (
+  `idTienda` INT NOT NULL AUTO_INCREMENT,
+  `nombreSucursal` VARCHAR(45) NULL,
+  `stockDisponible` INT NULL,
+  `numeroEmpleados` INT NULL,
+  `metodoPago` VARCHAR(45) NULL,
+  `idEmpleado` INT NULL,
+  PRIMARY KEY (`idTienda`),
+  INDEX `fk_Tienda_Empleado_idx` (`idEmpleado` ASC),
+  CONSTRAINT `fk_Tienda_Empleado`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `SistemaEd`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Videojuego`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Videojuego` (
+  `idVideojuego` INT NOT NULL AUTO_INCREMENT,
+  `genero` VARCHAR(45) NULL,
+  `nombreVideojuego` VARCHAR(45) NULL,
+  `precioVideojuego` DOUBLE NULL,
+  `fechaLanzamiento` DATE NULL,
+  `idTienda` INT NULL,
+  PRIMARY KEY (`idVideojuego`),
+  INDEX `fk_Videojuego_Tienda_idx` (`idTienda` ASC),
+  CONSTRAINT `fk_Videojuego_Tienda`
+    FOREIGN KEY (`idTienda`)
+    REFERENCES `SistemaEd`.`Tienda` (`idTienda`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`CompraDetalle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`CompraDetalle` (
+  `idCompraDetalle` INT NOT NULL AUTO_INCREMENT,
+  `idVideojuego` INT NULL,
+  `precioTotal` DOUBLE NULL,
+  `idCliente` INT NULL,
+  `idTienda` INT NULL,
+  `CompraDetallecol` VARCHAR(45) NULL,
+  `idEmpleado` INT NULL,
+  PRIMARY KEY (`idCompraDetalle`),
+  INDEX `fk_CompraDetalle_Videojuego_idx` (`idVideojuego` ASC),
+  INDEX `fk_CompraDetalle_Cliente_idx` (`idCliente` ASC),
+  INDEX `fk_CompraDetalle_Empleado_idx` (`idEmpleado` ASC),
+  CONSTRAINT `fk_CompraDetalle_Videojuego`
+    FOREIGN KEY (`idVideojuego`)
+    REFERENCES `SistemaEd`.`Videojuego` (`idVideojuego`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_CompraDetalle_Cliente`
+    FOREIGN KEY (`idCliente`)
+    REFERENCES `SistemaEd`.`Cliente1` (`idCliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_CompraDetalle_Empleado`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `SistemaEd`.`Empleado` (`idEmpleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Profesor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Profesor` (
+  `idProfesor` INT NOT NULL AUTO_INCREMENT,
+  `fechaContrato` DATE NULL,
+  `nombreProfesor` VARCHAR(45) NULL,
+  `nroAsignaturas` INT NULL,
+  `idAsignatura` INT NULL,
+  PRIMARY KEY (`idProfesor`),
+  INDEX `fk_Profesor_Asignatura_idx` (`idAsignatura` ASC),
+  CONSTRAINT `fk_Profesor_Asignatura`
+    FOREIGN KEY (`idAsignatura`)
+    REFERENCES `SistemaEd`.`Asignaturas` (`idAsignaturas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Carrera`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Carrera` (
+  `idCarrera` INT NOT NULL AUTO_INCREMENT,
+  `idAsignatura` INT NULL,
+  `nroCreditos` INT NULL,
+  `idProfesor` INT NULL,
+  `idAlumno` INT NULL,
+  PRIMARY KEY (`idCarrera`),
+  INDEX `fk_Carrera_Asignatura_idx` (`idAsignatura` ASC),
+  INDEX `fk_Carrera_Profesor_idx` (`idProfesor` ASC),
+  INDEX `fk_Carrera_Alumno_idx` (`idAlumno` ASC),
+  CONSTRAINT `fk_Carrera_Asignatura`
+    FOREIGN KEY (`idAsignatura`)
+    REFERENCES `SistemaEd`.`Asignaturas` (`idAsignaturas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Carrera_Profesor`
+    FOREIGN KEY (`idProfesor`)
+    REFERENCES `SistemaEd`.`Profesor` (`idProfesor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Carrera_Alumno`
+    FOREIGN KEY (`idAlumno`)
+    REFERENCES `SistemaEd`.`Alumno` (`idAlumno`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Asignaturas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Asignaturas` (
+  `idAsignaturas` INT NOT NULL AUTO_INCREMENT,
+  `numeroSemestre` INT NULL,
+  `tituloAsignatura` VARCHAR(45) NULL,
+  `idProfesor` INT NULL,
+  `idAlummno` INT NULL,
+  `idCarrera` INT NULL,
+  `cantCreditos` INT NULL,
+  PRIMARY KEY (`idAsignaturas`),
+  INDEX `fk_Asignaturas_Profesor_idx` (`idProfesor` ASC),
+  INDEX `fk_Asignaturas_Alumno_idx` (`idAlummno` ASC),
+  INDEX `fk_Asignaturas_Carrera_idx` (`idCarrera` ASC),
+  CONSTRAINT `fk_Asignaturas_Profesor`
+    FOREIGN KEY (`idProfesor`)
+    REFERENCES `SistemaEd`.`Profesor` (`idProfesor`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Asignaturas_Alumno`
+    FOREIGN KEY (`idAlummno`)
+    REFERENCES `SistemaEd`.`Alumno` (`idAlumno`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Asignaturas_Carrera`
+    FOREIGN KEY (`idCarrera`)
+    REFERENCES `SistemaEd`.`Carrera` (`idCarrera`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SistemaEd`.`Alumno`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SistemaEd`.`Alumno` (
+  `idAlumno` INT NOT NULL AUTO_INCREMENT,
+  `nombreAlumno` VARCHAR(45) NULL,
+  `fechaIngreso` DATE NULL,
+  `creditosAnual` INT NULL,
+  `semestreActual` INT NULL,
+  `carrera` VARCHAR(45) NULL,
+  `promedioNotas` DOUBLE NULL,
+  `idAsignatura` INT NULL,
+  PRIMARY KEY (`idAlumno`),
+  INDEX `fk_Alumno_Asignatura` (),
+  INDEX `fk_Alumno_Asignatura_idx` (`idAsignatura` ASC),
+  CONSTRAINT `fk_Alumno_Asignatura`
+    FOREIGN KEY (`idAsignatura`)
+    REFERENCES `SistemaEd`.`Asignaturas` (`idAsignaturas`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
