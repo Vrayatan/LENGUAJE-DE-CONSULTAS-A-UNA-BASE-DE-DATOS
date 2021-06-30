@@ -1,0 +1,46 @@
+Actividades 25 06
+
+/* Identificar entidades de una tienda de videojuegos:
+
+[Videojuego]
+>nombre 
+>genero
+>fechaLanzamiento
+[Cliente]
+>idCliente
+>accionRealizada
+>fechaAccion
+>saldo
+[Bodega]
+>nombreProducto
+>stockProducto
+>generoProducto
+[Empleado]
+>nombre
+>apellidoP
+>apellidoM
+>departamento
+>fechaContrato
+[Sucursales]
+>nombreSucursal
+>stockDisponible
+>metodosPago
+>numeroEmpleados
+[Ventas]
+>itemVendido
+>fechaVenta
+>montoRecibido
+[Compras]
+>itemComprado
+>fechaCompra
+>montoPagado*/
+
+create database videojuegos character set  utf8;
+create table VJ (
+	idTabla int auto_increment,
+    nombre varchar(30),
+    género varchar(20),
+    fechaLanzamiento date,
+    primary key(idTabla)
+);
+
